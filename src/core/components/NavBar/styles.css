@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+.main-nav {
+    position: absolute;
+    width: 1440px;
+    height: 62px;
+    left: 0px;
+    top: 0px;    
+    background: #1890FF;
+}
+
+.nav-logo-text{    
+    width: 248px;
+    height: 32px;
+    margin-left: 41px;
+    margin-top: 15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
