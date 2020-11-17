@@ -13,7 +13,7 @@ const Routes = () => (
             </Route>
             <Route path="/search">
                 <Search />
-            </Route>
+            </Route>            
         </Switch>
     </BrowserRouter>
 );

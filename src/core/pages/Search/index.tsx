@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Form from '../../components/Form';
+import UserInfo from '../../components/UserInfo';
+import { User } from './types';
 import './styles.css';
 
-const Search = () => (
-    <div className="search-card">
-        <h4 className="search-title">
-            Encontre um perfil no Github
-        </h4>
-        <form className="search-input">
-            <input type="text" className="search-input-text" placeholder="Usuário Github" />
-        </form>
-        <div>
-            <button className="btn-search">
-                <h3 className="btn-search-text">
-                Encontrar
-                </h3>
-            </button>
-        </div>
-    </div>
-)
+const BASE_URL = 'https://api.github.com/users';
+
+const Search = () => {
+    const [userInfo, setUserInfo] = useState<User>();    
+
+    const handleSearch = (search: string) => {
+        axios(`${BASE_URL}/${search}`)
+            .then(response => {
+                setUserInfo(response.data);
+            })
+    }
+
+    return (
+        <>
+            <div className="search-container">
+                <Form onSearch={handleSearch} />
+                <UserInfo />
+            </div>
+        </>
+
+    );
+}
+
+
 
 export default Search;
