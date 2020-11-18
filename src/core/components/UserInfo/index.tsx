@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import ImageLoader from '../../pages/Search/components/Loaders/ImageLoader';
 import InfoLoader from '../../pages/Search/components/Loaders/InfoLoader';
 import { User } from '../../pages/Search/types';
+import dayjs from 'dayjs'
+
 import axios from 'axios';
 import '../../../App.css';
 import './styles.css';
-
 
 type Props = {
     user: User;
@@ -15,7 +16,9 @@ const BASE_URL = 'https://api.github.com/users';
 
 const UserInfo = ({ user }: Props) => {
 
-    const [userResponse, setUserResponse] = useState<Props>();
+    const newDate = dayjs(user.created_at).format('DD/MM/YYYY');
+
+    const [userResponse, setUserResponse] = useState<User>();
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -26,9 +29,7 @@ const UserInfo = ({ user }: Props) => {
                 setIsLoading(false)
             })
 
-
     }, [userResponse]);
-
 
     return (
         <div className="user-container">
@@ -77,7 +78,7 @@ const UserInfo = ({ user }: Props) => {
                                 <strong>Localidade: </strong> {user.location}
                             </div>
                             <div className="user-info-details-item user-info-item">
-                                <strong>Membro desde: </strong> {user.created_at}
+                                <strong>Membro desde: </strong> {newDate}
                             </div>
                         </div>
                     </div>
