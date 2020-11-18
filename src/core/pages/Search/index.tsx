@@ -8,12 +8,16 @@ import './styles.css';
 const BASE_URL = 'https://api.github.com/users';
 
 const Search = () => {
-    const [userInfo, setUserInfo] = useState<User>();    
+    const [userInfo, setUserInfo] = useState<User>();
 
     const handleSearch = (search: string) => {
+
         axios(`${BASE_URL}/${search}`)
             .then(response => {
                 setUserInfo(response.data);
+            })
+            .catch(() => {
+                alert('Não consegui encontrar o usuário')
             })
     }
 
@@ -21,7 +25,9 @@ const Search = () => {
         <>
             <div className="search-container">
                 <Form onSearch={handleSearch} />
-                <UserInfo />
+                {userInfo && (
+                    <UserInfo user={userInfo} />
+                )}
             </div>
         </>
 
